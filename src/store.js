@@ -1,8 +1,7 @@
 import {configureStore } from "@reduxjs/toolkit"
-import notesReducer from "./ListSlice"
+import  counterReducer from "../src/ListSlice"
 
 export default configureStore({
-    reducer: {
-        notes: notesReducer
-      }
+    reducer:{}
 })
+console.log(counterReducer);

@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text,InputText, StyleSheet,SafeAreaView,Button} from 'react-native';
+import { View,Text,TextInput, StyleSheet,SafeAreaView} from 'react-native';
 
 export default function TodoPage() {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}}>
         <View style={styles.container}>
-            <InputText placeholder="inserttext"/>sxsxsxsxsxssd<Button>search</Button>
+           <TextInput value="monnus" placeholder="Monnus" style={{height:70,width:400, backgroundColor:"white",fontSize:20}}/>
         </View>      
      </SafeAreaView>
   );
@@ -14,7 +14,9 @@ export default function TodoPage() {
 
 const styles=StyleSheet.create({
   container:{
-flex:1,
-backgroundColor:"lightBlue",
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+    backgroundColor:"lightblue",
   }
 })

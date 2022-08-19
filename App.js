@@ -6,13 +6,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
 import HomeScreen from './src/pages/HomeScreen';
-
+import TodoPage from "./src/pages/Listpage"
 const Stack=createNativeStackNavigator()
+
 export default function App() {
   return (
 <Provider store={store}>
-    <NavigationContainer initialRouteName="Home">
+    <NavigationContainer initialRouteName="todoscreen">
     <Stack.Navigator>
+      <Stack.Screen name="todoscreen" component={TodoPage} options={{headerShown:false}}/>
       <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
     </Stack.Navigator>
   </NavigationContainer>

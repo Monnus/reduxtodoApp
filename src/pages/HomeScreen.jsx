@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { View, Text,StyleSheet,SafeAreaView } from 'react-native';
+import { View,TouchableOpacity, Text,StyleSheet,SafeAreaView,Button } from 'react-native';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   return (
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{flex:1}} >
     <View style={styles.container}>
-    <Text>Open up App.js to start working on your app!</Text>
+    <TouchableOpacity  style={styles.btn} onPress={()=>navigation.navigate("todoscreen")}><Text style={{fontSize:20,fontWeight:700}}>Click to go create todo</Text></TouchableOpacity>
     </View>
     </SafeAreaView>
   );
@@ -15,9 +15,15 @@ export default function HomeScreen() {
     const styles = StyleSheet.create({
         container: {
           flex: 1,
-        
           alignItems: 'center',
           justifyContent: 'center',
         },
+        btn:{
+          backgroundColor:"skyblue",
+          height:"100px",
+          width:"500px",
+ justifyContent:"center",
+ alignItems:"center"
+        }
       });
       

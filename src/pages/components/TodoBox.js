@@ -11,6 +11,11 @@ export default function Todocontainer({refInput}) {
 // <Text style={{fontSize:15,}}>note.content</Text>
 //     </View>
 //   })
+const renderPost=notes.map((note)=>{
+  <View>
+    <Text>{note.title}</Text>
+  </View>
+})
   return (
     <View style={styles.container}>
       <Text>hello</Text>

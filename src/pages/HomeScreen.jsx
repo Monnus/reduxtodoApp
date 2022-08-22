@@ -4,7 +4,7 @@ import { View,TouchableOpacity, Text,StyleSheet,SafeAreaView,Button,TextInput } 
 import Todocontainer from './components/TodoBox';
 
 export default function HomeScreen({navigation}) {
-  const [refInput,setRefInput]=useState("")
+  const [refInput,setRefInput]=useState("");
   return (
     <SafeAreaView style={{flex:1}} >
     <View style={styles.container}>
@@ -14,7 +14,7 @@ export default function HomeScreen({navigation}) {
       <Text style={{fontSize:15,fontWeight:"500"}}>Add</Text>
       </TouchableOpacity>
       </View>
-      <Todocontainer/>
+      <Todocontainer refInput={refInput}/>
     </View>
     </SafeAreaView>
   );

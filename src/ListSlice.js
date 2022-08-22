@@ -1,21 +1,19 @@
 import {createSlice} from "@reduxjs/toolkit"
 
-
-export const counterSlice = createSlice({
-    name: 'counter',
-    initialState: {
-      value: 0
-    },
+const initialState=[];
+export const noteSlice = createSlice({
+    name: 'notes',
+    initialState,
     reducers: {
-      increment: state => {
+      sendReadwrite: state => {
         // Redux Toolkit allows us to write "mutating" logic in reducers. It
         // doesn't actually mutate the state because it uses the Immer library,
         // which detects changes to a "draft state" and produces a brand new
         // immutable state based off those changes
-        state.value += 1
+      return state
       },
-      decrement: state => {
-        state.value -= 1
+      bringBackReads: state => {
+
       },
       incrementByAmount: (state, action) => {
         state.value += action.payload
@@ -23,6 +21,6 @@ export const counterSlice = createSlice({
     }
   })
 
-console.log(counterSlice.reducer);
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
-export default counterSlice.reducer
+console.log(noteSlice.reducer);
+export const { sendReadwrite, bringBackReads } = noteSlice.actions
+export default noteSlice.reducer

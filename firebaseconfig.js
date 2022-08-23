@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getDatabase} from "firebase/database"
+import {getDatabase,set,ref} from "firebase/database"
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,4 +18,18 @@ const app = initializeApp({
     databaseURL:"https://reduxtodoapp-a6020-default-rtdb.firebaseio.com"
   });
 export default app
-export const database= getDatabase(app)
+export const db= getDatabase()
+function writeUserData(user,number,surname,gender){
+  const reference=ref(db,"user"+1)
+
+  set(reference,{
+  name:user,
+  surname,
+  number,
+  gender
+  });
+}
+
+writeUserData("logo",1233445,"golder","male");
+writeUserData("super",143434,"max","male");
+

@@ -1,16 +1,20 @@
 import {createSlice} from "@reduxjs/toolkit"
-
+import { getDatabase,ref,set } from "firebase/database";
+import "../firebaseconfig"
+const db=getDatabase()
 const initialState=[];
 export const noteSlice = createSlice({
     name: 'notes',
     initialState,
     reducers: {
-      sendReadwrite: state => {
-        // Redux Toolkit allows us to write "mutating" logic in reducers. It
-        // doesn't actually mutate the state because it uses the Immer library,
-        // which detects changes to a "draft state" and produces a brand new
-        // immutable state based off those changes
-      return state
+      sendReadwrite: (state,action) => {
+        console.log(action);
+        // ref(db,"notes/"+action.payload.loggedIn).set({
+        //   date:action.payload.data,
+        //   title:action.payload.title,
+        //    text:action.payload.text   
+        // })
+      state.push(action.payload)
       },
       bringBackReads: state => {
 

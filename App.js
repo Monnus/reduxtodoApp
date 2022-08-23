@@ -2,11 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import store from './src/store';
 import { Provider } from 'react-redux';
-import Login from './src/pages/login';
+import Signup from './src/pages/signup';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import app from './firebaseconfig';
-import Signin from './src/pages/Signin';
+
+import Login from './src/pages/login';
 import HomeScreen from "./src/pages/HomeScreen"
 
 const Stack = createNativeStackNavigator();
@@ -15,8 +15,8 @@ export default function App() {
     <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Signup" component={Signin} options={{headerShown:false}}/>
-        <Stack.Screen name="login" component={Login} options={{headerShown:false}}/>
+        <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
+        <Stack.Screen name="Signup" component={Signup} options={{headerShown:false}}/>
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>

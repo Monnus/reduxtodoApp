@@ -19,17 +19,15 @@ const app = initializeApp({
   });
 export default app
 export const db= getDatabase()
-function writeUserData(user,number,surname,gender){
-  const reference=ref(db,"user"+1)
+// function writeUserData(user,number,surname,gender){
+//   const reference=ref(db,"user"+1)
 
-  set(reference,{
-  name:user,
-  surname,
-  number,
-  gender
-  });
-}
+//   set(reference,{
+//   name:user,
+//   surname,
+//   number,
+//   gender
+//   });
+// }
 
-writeUserData("logo",1233445,"golder","male");
-writeUserData("super",143434,"max","male");
 

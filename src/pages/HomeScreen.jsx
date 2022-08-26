@@ -6,10 +6,32 @@ import { useDispatch } from 'react-redux';
 import {nanoid} from "@reduxjs/toolkit"
 import {sendReadwrite} from "../ListSlice"
 import { logggedIn } from './login';
+import {getDatabase,set,ref} from "firebase/database"
+import { useSelector } from 'react-redux';
 
 export default function HomeScreen({navigation}) {
   const [refInput,setRefInput]=useState("");
   const dispatch=useDispatch();
+  const notes=useSelector(state=>state.notes);
+  function writeUserData(id,date,title="ToDo notes",text,logggedIn=null){
+    const db= getDatabase()
+    const reference=ref(db,"user/"+notes.length)
+  
+    set(reference,{
+      id,
+      date,
+      title,
+       text,
+       logggedIn
+    });
+  return dispatch(sendReadwrite({
+      id,
+      date,
+      title,
+       text,
+       logggedIn
+    }))
+  }
 
   const handleAddInput=()=>{
     const date=new Date()
@@ -18,13 +40,8 @@ export default function HomeScreen({navigation}) {
     const day =date.getDate()
 
       if(refInput){
-        dispatch(sendReadwrite({
-          id:nanoid(),
-          date:`${day}\\${month}\\${year}`,
-          title:"ToDo notes",
-           text:refInput,
-           logggedIn
-        }))
+        
+        writeUserData(nanoid(),`${day}\\${month}\\${year}`,undefined,refInput,undefined)
         setRefInput("")
       }
   }

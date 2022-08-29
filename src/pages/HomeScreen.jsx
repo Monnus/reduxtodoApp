@@ -1,18 +1,60 @@
 
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { View,TouchableOpacity, Text,StyleSheet,SafeAreaView,Button,TextInput } from 'react-native';
 import Todocontainer from './components/TodoBox';
 import { useDispatch } from 'react-redux';
 import {nanoid} from "@reduxjs/toolkit"
-import {sendReadwrite} from "../ListSlice"
+import {bringBackReads, sendReadwrite} from "../ListSlice"
 import { logggedIn } from './login';
-import {getDatabase,set,ref} from "firebase/database"
+import {getDatabase,set,ref, onValue,remove,} from "firebase/database"
 import { useSelector } from 'react-redux';
+import { getAuth,signOut } from 'firebase/auth';
 
 export default function HomeScreen({navigation}) {
+const auth=getAuth();
+ function handlesignout(){
+  signOut(auth).then((res)=>{
+    console.log(res,"seccssfully logged out");
+
+  }).catch((err)=>{console.log(err)})
+ }
   const [refInput,setRefInput]=useState("");
+
   const dispatch=useDispatch();
   const notes=useSelector(state=>state.notes);
+const funDispatch=(arr)=>{
+ return arr.forEach(data=>dispatch(bringBackReads(data)))
+}
+  useEffect(()=>{
+    (()=>{
+  const db=getDatabase();
+  const reference=ref(db,"user")
+  onValue(reference,(snapshot)=>{
+    const dataArr=snapshot.val();
+    if(dataArr==null)return;
+    let dataArr2=[]
+    snapshot.forEach(data=>dataArr2.push(data.val()))
+    funDispatch(dataArr)
+  console.log(dataArr2,dataArr);
+
+// snapshot.forEach((childSnapshot)=>{
+//   const childKey=childSnapshot.key;
+//   const childData=childSnapshot.val()
+})
+})();
+ 
+  },[])
+
+ 
+  // function removeData(){
+  //   const db= getDatabase();
+  //   const reference= ref(db,"user");
+  //   remove(reference).then((res)=>{
+  //     console.log(res)
+  //   }).catch((err)=>console.log(err))
+  // }
+  // removeData()
+
   function writeUserData(id,date,title="ToDo notes",text,logggedIn=null){
     const db= getDatabase()
     const reference=ref(db,"user/"+notes.length)
@@ -47,6 +89,9 @@ export default function HomeScreen({navigation}) {
   }
   return (
     <SafeAreaView style={{flex:1}} >
+         <TouchableOpacity style={styles.btn} onPress={handlesignout}>
+      <Text style={{fontSize:15,fontWeight:"500"}}>logout</Text>
+      </TouchableOpacity>
     <View style={styles.container}>
       <View style={{flexDirection:"row",marginBottom:"20px"}}>
     <TextInput value={refInput} onChangeText={setRefInput} style={styles.inputtxt} placeholder="insert text..."/>

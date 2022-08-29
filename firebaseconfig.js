@@ -18,7 +18,6 @@ const app = initializeApp({
     databaseURL:"https://reduxtodoapp-a6020-default-rtdb.firebaseio.com"
   });
 export default app
-export const db= getDatabase()
 // function writeUserData(user,number,surname,gender){
 //   const reference=ref(db,"user"+1)
 

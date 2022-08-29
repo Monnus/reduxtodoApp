@@ -8,16 +8,19 @@ export const noteSlice = createSlice({
     initialState,
     reducers: {
       sendReadwrite: (state,action) => {
-        console.log(action);
-        // ref(db,"notes/"+action.payload.loggedIn).set({
-        //   date:action.payload.data,
-        //   title:action.payload.title,
-        //    text:action.payload.text   
-        // })
+    
+       
+     if(state){
+return [...state,action.payload];
+     }
       state.push(action.payload)
       },
-      bringBackReads: state => {
-
+      bringBackReads: (state,action) => {
+     
+        if(state){
+          return [...state,action.payload];
+               }
+          state.push(action.payload)
       },
       incrementByAmount: (state, action) => {
         state.value += action.payload
